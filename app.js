@@ -12,6 +12,7 @@ const hours = document.querySelector('#hours');
 const table1 = document.querySelector('#table1 tbody');
 const tables = document.querySelector('#tables');
 const table2 = document.querySelector('#table2 tbody');
+const clearButton = document.querySelector('#clear');
 
 const process = new Process(rentalForm,citySelect,vehicleSelect,quantity,hours);
 
@@ -181,3 +182,11 @@ rentalForm.addEventListener('submit', (e) => {
     printTable2();
     printTable3();
 });
+
+clearButton.addEventListener('click', () => {
+    localStorage.clear();
+    printTable1();
+    printTable2();
+    printTable3();
+});
+
