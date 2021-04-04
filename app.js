@@ -30,10 +30,16 @@ vehicles.forEach(vehicle => {
     process.vehicleSelect.appendChild(option);
 });
 
+const validateEmptyRentals = (dividend, divisor) => {
+    if(divisor == 0)
+        return 0;    
+    else
+        return ((dividend/divisor)*100).toFixed(2);
+}
 //Rentals filtered by city, a new array including total fees
 const totalFeeByCity = () => {
     const rentalsByCities = new Array();
-    const totalFee = process.totalFee();
+    let totalFee = process.totalFee();
     cities.forEach(city => {    
         const group = process.rentalsByCity(city.id);    
         let total = 0;
@@ -43,7 +49,7 @@ const totalFeeByCity = () => {
             city: cityObj.id,
             name: cityObj.name,
             fee: total,
-            percent: ((total/totalFee)*100).toFixed(2)
+            percent: validateEmptyRentals(total, totalFee)
         }
         rentalsByCities.push(toPush);
     });
